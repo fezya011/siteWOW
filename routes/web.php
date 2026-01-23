@@ -10,7 +10,6 @@ Route::get('/', function () {
 
 Route::get('/posts', [PostController::class, 'index'])->name('home');
 Route::get('/posts/create', [PostController::class, 'create'])->name('createPost');
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('showPostBySlug');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
-
 

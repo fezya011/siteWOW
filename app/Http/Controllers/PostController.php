@@ -4,15 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+
 class PostController extends Controller
 {
-    public function index()
-    {
-        $posts = Post::latest()->paginate(6);
-        return view('home', compact('posts'));
-    }
-
     public function create()
     {
         return view('createPost');
@@ -20,36 +14,45 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|max:255',
-            'content' => 'required|min:10',
-            'excerpt' => 'nullable|max:500',
-            'category' => 'required|max:50',
-            'author' => 'required|max:100',
-            'author_initials' => 'required|max:2|min:2|alpha',
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'category' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'author_initials' => 'required|string|size:2',
+            'excerpt' => 'nullable|string|max:500',
             'likes' => 'nullable|integer|min:0',
             'comments' => 'nullable|integer|min:0',
         ]);
 
-        $validated = ['title'];
-        $validated['slug'] = Str::slug($validated['title']);
-
         if (empty($validated['excerpt'])) {
-            $validated['excerpt'] = Str::limit(strip_tags($validated['content']), 150);
+            $validated['excerpt'] = substr(strip_tags($validated['content']), 0, 150) . '...';
         }
 
         Post::create($validated);
 
-        return redirect()->route('posts.index')
-            ->with('success', 'Post created successfully!');
+        return redirect()->route('home')
+            ->with('success', 'Пост успешно создан!');
     }
 
-    public function show(Post $post)
+    public function index()
     {
+        $posts = Post::latest()->get();
+        return view('home', compact('posts'));
+    }
+
+    public function show($id)
+    {
+        $post = Post::findOrFail($id);
         return view('posts.show', compact('post'));
     }
 
+    public function destroy($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->delete();
 
-
-
+        return redirect()->route('posts.index')
+            ->with('success', 'Пост успешно удален!');
+    }
 }
