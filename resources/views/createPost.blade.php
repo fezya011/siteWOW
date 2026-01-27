@@ -21,7 +21,7 @@
 
         .editor-button {
             padding: 0.375rem 0.75rem;
-            background: #f5f5f4;
+            background: #3E3E3A;
             border: 1px solid #e3e3e0;
             border-radius: 0.25rem;
             cursor: pointer;
@@ -29,13 +29,13 @@
         }
 
         .editor-button:hover {
-            background: #e3e3e0;
+            background: #3E3E3A;
         }
 
         .dark .editor-button {
             background: #3E3E3A;
             border-color: #3E3E3A;
-            color: #EDEDEC;
+            color: #7d7d7d;
         }
 
         .dark .editor-button:hover {
