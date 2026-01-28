@@ -9,7 +9,12 @@ class PostController extends Controller
 {
     public function create()
     {
-        return view('createPost');
+        return view('front/createPost');
+    }
+
+    public function about()
+    {
+        return view('front/about');
     }
 
     public function store(Request $request)
@@ -65,13 +70,13 @@ class PostController extends Controller
         }
 
         $posts = $query->paginate(12);
-        return view('home', compact('posts'));
+        return view('front/home', compact('posts'));
     }
 
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        return view('posts.show', compact('post'));
+        return view('front/postsShow', compact('post'));
     }
 
     public function destroy($id)
@@ -79,7 +84,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->delete();
 
-        return redirect()->route('posts.index')
+        return redirect()->route('posts')
             ->with('success', 'Пост успешно удален!');
     }
 }

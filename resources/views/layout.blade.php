@@ -99,7 +99,7 @@
             </div>
 
             <div class="flex space-x-6">
-                <a href="#" class="text-sm text-[#706f6c] dark:text-muted hover:text-[#1b1b18] dark:hover:text-light transition-colors">About</a>
+                <a href="{{ url('/about') }}" class="text-sm text-[#706f6c] dark:text-muted hover:text-[#1b1b18] dark:hover:text-light transition-colors">About</a>
                 <a href="#" class="text-sm text-[#706f6c] dark:text-muted hover:text-[#1b1b18] dark:hover:text-light transition-colors">Contact</a>
                 <a href="#" class="text-sm text-[#706f6c] dark:text-muted hover:text-[#1b1b18] dark:hover:text-light transition-colors">Privacy</a>
                 <a href="#" class="text-sm text-[#706f6c] dark:text-muted hover:text-[#1b1b18] dark:hover:text-light transition-colors">Terms</a>
@@ -107,7 +107,7 @@
         </div>
 
         <div class="mt-8 pt-8 border-t border-[#e3e3e0] dark:border-custom-dark text-center">
-            <p class="text-sm text-[#706f6c] dark:text-muted">© 2024 Laravel Posts. All rights reserved.</p>
+            <p class="text-sm text-[#706f6c] dark:text-muted">© 2026 Laravel Posts. All rights reserved.</p>
         </div>
     </div>
 </footer>
