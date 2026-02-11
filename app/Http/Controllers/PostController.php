@@ -28,6 +28,7 @@ class PostController extends Controller
             'excerpt' => 'nullable|string|max:500',
             'likes' => 'nullable|integer|min:0',
             'comments' => 'nullable|integer|min:0',
+            'user_id' => 'required|integer|min:0',
         ]);
 
         if (empty($validated['excerpt'])) {

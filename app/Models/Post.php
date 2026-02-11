@@ -17,6 +17,7 @@ class Post extends Model
         'author_initials',
         'excerpt',
         'likes',
-        'comments'
+        'comments',
+        'user_id'
     ];
 }

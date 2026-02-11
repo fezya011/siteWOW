@@ -9,7 +9,6 @@ return new class extends Migration
 {
     public function up()
     {
-        // Создаем таблицу с ВСЕМИ нужными колонками
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
@@ -20,7 +19,10 @@ return new class extends Migration
             $table->text('excerpt')->nullable();
             $table->integer('likes')->default(0);
             $table->integer('comments')->default(0);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+
+            $table->index('user_id'); // Индекс
         });
 
         // Проверим создание через SQL запрос
