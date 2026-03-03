@@ -42,4 +42,9 @@ Route::get('/posts', [PostController::class, 'index'])->name('home');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('show');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 
+Route::get('/test-403', fn() => abort(403));
+Route::get('/test-404', fn() => abort(404));
+Route::get('/test-419', fn() => abort(419));
+Route::get('/test-500', fn() => abort(500));
+
 

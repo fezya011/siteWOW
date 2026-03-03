@@ -1,17 +1,13 @@
-{{-- resources/views/errors/404.blade.php --}}
 @extends('layout')
-
-@section('title', '404 - Page Not Found')
-
+@section('title', '403 - Forbidden')
 @section('content')
     <main class="h-screen w-full flex flex-col justify-center items-center bg-white">
-
         <h1 class="text-9xl font-extrabold text-black tracking-widest mt-20 mb-0 drop-shadow-lg relative">
-            404
+            403
         </h1>
 
-        <div class="bg-gray-200 px-4 py-2 text-sm font-medium text-black rounded-lg rotate-12 mb-10 shadow-md absolute">
-            Page Not Found
+        <div class="bg-red-200 px-4 py-2 text-sm font-medium text-black rounded-lg rotate-12 mb-10 shadow-md absolute">
+            Access Forbidden
         </div>
 
         <div class="mt-16 relative">
@@ -31,12 +27,9 @@
             </a>
         </div>
 
-        <p class="text-gray-500 mt-8 text-base relative">
-            The page you're looking for doesn't exist or has been moved.
-        </p>
+        <p class="text-gray-500 mt-16 text-base">You don't have permission to access this page.</p>
 
-        <button onclick="history.back()"
-                class="mt-6 text-gray-500 hover:text-black transition-colors duration-300 text-sm flex items-center group relative">
+        <button onclick="history.back()" class="mt-6 text-gray-500 hover:text-black transition-colors text-sm flex items-center group">
             <svg class="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
             </svg>
@@ -44,7 +37,7 @@
         </button>
 
         <div class="absolute bottom-8 left-0 right-0 flex justify-center">
-            <div class="w-24 h-1 bg-gray-200 rounded-full"></div>
+            <div class="w-24 h-1 bg-red-200 rounded-full"></div>
         </div>
     </main>
 @endsection
