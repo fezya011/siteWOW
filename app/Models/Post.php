@@ -2,22 +2,29 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Post extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'content',
-        'category',
-        'author',
-        'author_initials',
-        'excerpt',
-        'likes',
-        'comments',
-        'user_id'
+        'title', 'content', 'category',
+        'author', 'author_initials', 'excerpt',
+        'likes', 'comments', 'user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getInitialsAttribute(): string
+    {
+        $parts = explode(' ', $this->name, 2);
+        return strtoupper(substr($parts[0], 0, 1) . substr($parts[1] ?? $parts[0], 1, 1));
+    }
 }

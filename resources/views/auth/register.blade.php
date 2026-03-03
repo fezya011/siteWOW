@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Register - Laravel Posts')
+@section('title', 'Register - Laravel PostsServices')
 
 @section('content')
     <div class="container mx-auto px-4 lg:px-8 py-8">

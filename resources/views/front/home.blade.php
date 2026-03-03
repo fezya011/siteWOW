@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Laravel Posts - Latest Posts')
+@section('title', 'Laravel PostsServices - Latest PostsServices')
 
 @section('content')
     <!-- Основной контент -->

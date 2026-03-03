@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Laravel Posts - About us')
+@section('title', 'Laravel PostsServices - About us')
 
 @section('content')
 
