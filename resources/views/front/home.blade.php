@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Laravel PostsServices - Latest PostsServices')
+@section('title', 'Home - Postly')
 
 @section('content')
     <!-- Основной контент -->

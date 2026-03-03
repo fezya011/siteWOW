@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Create Post - Laravel PostsServices')
+@section('title', 'Create Post - Postly')
 
 @section('content')
     <div class="container mx-auto px-4 lg:px-8 py-8">
