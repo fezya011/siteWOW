@@ -1,9 +1,11 @@
 <?php
+// app/Http/Controllers/Web/PostController.php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Http\Requests\Posts\StorePostRequest;
-use App\Http\Requests\Posts\UpdatePostRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Web\Posts\StorePostRequest;
+use App\Http\Requests\Web\Posts\UpdatePostRequest;
 use App\Models\Post;
 use App\Service\PostsServices\CreatePostService;
 use App\Service\PostsServices\FilterPostsService;
@@ -12,20 +14,29 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
+    /**
+     * Display a listing of posts
+     */
     public function index(Request $request, FilterPostsService $filter)
     {
         $posts = $filter->execute($request);
 
-        return view('front/home', compact('posts'));
+        return view('front.home', compact('posts'));
     }
 
+    /**
+     * Show form for creating a new post
+     */
     public function create()
     {
         $this->authorize('create-post');
 
-        return view('front/createPost');
+        return view('front.createPost');
     }
 
+    /**
+     * Store a newly created post
+     */
     public function store(StorePostRequest $request, CreatePostService $action)
     {
         $this->authorize('create-post');
@@ -35,11 +46,17 @@ class PostController extends Controller
         return redirect()->route('home')->with('success', 'Пост успешно создан!');
     }
 
+    /**
+     * Display the specified post
+     */
     public function show(Post $post)
     {
-        return view('front/show', compact('post'));
+        return view('front.show', compact('post'));
     }
 
+    /**
+     * Show form for editing the specified post
+     */
     public function edit(Post $post)
     {
         $this->authorize('update-post', $post);
@@ -47,21 +64,32 @@ class PostController extends Controller
         return view('front.edit', compact('post'));
     }
 
+    /**
+     * Update the specified post
+     */
     public function update(UpdatePostRequest $request, Post $post)
     {
         $this->authorize('update-post', $post);
 
         $validated = $request->validated();
-        $validated['excerpt'] ??= Str::limit(strip_tags($validated['content']), 150);
+
+        // Generate excerpt if not provided
+        if (empty($validated['excerpt']) && isset($validated['content'])) {
+            $validated['excerpt'] = Str::limit(strip_tags($validated['content']), 150);
+        }
 
         $post->update($validated);
 
         return redirect()->route('show', $post)->with('success', 'Post updated successfully!');
     }
 
+    /**
+     * Remove the specified post
+     */
     public function destroy(Post $post)
     {
         $this->authorize('delete-post', $post);
+
         $post->delete();
 
         return redirect()->route('home')->with('success', 'Пост успешно удалён!');

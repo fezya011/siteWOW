@@ -1,22 +1,33 @@
 <?php
+// app/Http/Controllers/Web/AuthController.php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Http\Requests\Auth\LoginRequest;
-use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Web\Auth\LoginRequest;
+use App\Http\Requests\Web\Auth\RegisterRequest;
 use App\Service\AuthServices\RegisterUserService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    /**
+     * Show login form
+     */
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
+    /**
+     * Handle login request
+     */
     public function login(LoginRequest $request)
     {
-        if (!Auth::attempt($request->validated(), $request->boolean('remember'))) {
+        $credentials = $request->validated();
+
+        if (!Auth::attempt($credentials, $request->boolean('remember'))) {
             return back()
                 ->withErrors(['email' => 'The provided credentials do not match our records.'])
                 ->onlyInput('email');
@@ -27,21 +38,32 @@ class AuthController extends Controller
         return redirect()->intended('/posts');
     }
 
+    /**
+     * Show registration form
+     */
     public function showRegisterForm()
     {
         return view('auth.register');
     }
 
+    /**
+     * Handle registration request
+     */
     public function register(RegisterRequest $request, RegisterUserService $action)
     {
-        Auth::login($action->execute($request));
+        $user = $action->execute($request);
+        Auth::login($user);
 
         return redirect('/posts')->with('success', 'Registration successful!');
     }
 
-    public function logout(LoginRequest $request)
+    /**
+     * Handle logout request
+     */
+    public function logout(Request $request)
     {
         Auth::logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

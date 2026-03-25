@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\Web\AuthController;
+use App\Http\Controllers\Web\PageController;
+use App\Http\Controllers\Web\PostController;
+use App\Http\Controllers\Web\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PageController;
 
 // Гостевые маршруты
 Route::middleware('guest')->group(function () {

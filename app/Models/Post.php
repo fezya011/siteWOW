@@ -21,10 +21,4 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function getInitialsAttribute(): string
-    {
-        $parts = explode(' ', $this->name, 2);
-        return strtoupper(substr($parts[0], 0, 1) . substr($parts[1] ?? $parts[0], 1, 1));
-    }
 }
