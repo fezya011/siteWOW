@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     /**
-     * Get user profile.
+     * Показать профиль пользователя.
      *
      * @param Request $request
      * @return JsonResponse
@@ -40,7 +40,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update user profile.
+     * Обновить профиль пользователя.
      *
      * @param UpdateProfileRequest $request
      * @return JsonResponse

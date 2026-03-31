@@ -1,5 +1,4 @@
 <?php
-// app/Http/Controllers/Api/AuthController.php
 
 namespace App\Http\Controllers\Api;
 
@@ -15,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     /**
-     * Register a new user.
+     * Регистрация нового пользователя.
      *
      * @param RegisterRequest $request
      * @return JsonResponse
@@ -29,7 +28,6 @@ class AuthController extends Controller
             'role' => 'user',
         ];
 
-        // Обработка аватара
         if ($avatar = $request->file('avatar')) {
             $fileName = time() . '_' . $avatar->getClientOriginalName();
             $avatar->move(public_path('storage/avatars'), $fileName);
@@ -47,7 +45,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Login user.
+     * Авторизация пользователя.
      *
      * @param LoginRequest $request
      * @return JsonResponse
@@ -62,7 +60,6 @@ class AuthController extends Controller
             ], 401);
         }
 
-        // Удаляем старые токены (опционально)
         $user->tokens()->delete();
 
         $token = $user->createToken('auth-token')->plainTextToken;
@@ -75,7 +72,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Logout user.
+     * Выход пользователя.
      *
      * @param Request $request
      * @return JsonResponse
@@ -90,7 +87,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Get authenticated user.
+     * Показать авторизованного пользователя.
      *
      * @param Request $request
      * @return JsonResponse

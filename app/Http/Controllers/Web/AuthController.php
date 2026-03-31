@@ -12,17 +12,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    /**
-     * Show login form
-     */
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    /**
-     * Handle login request
-     */
     public function login(LoginRequest $request)
     {
         $credentials = $request->validated();
@@ -38,17 +32,11 @@ class AuthController extends Controller
         return redirect()->intended('/posts');
     }
 
-    /**
-     * Show registration form
-     */
     public function showRegisterForm()
     {
         return view('auth.register');
     }
 
-    /**
-     * Handle registration request
-     */
     public function register(RegisterRequest $request, RegisterUserService $action)
     {
         $user = $action->execute($request);
@@ -57,9 +45,6 @@ class AuthController extends Controller
         return redirect('/posts')->with('success', 'Registration successful!');
     }
 
-    /**
-     * Handle logout request
-     */
     public function logout(Request $request)
     {
         Auth::logout();

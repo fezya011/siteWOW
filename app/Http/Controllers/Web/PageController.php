@@ -7,9 +7,6 @@ use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
-    /**
-     * Show about page
-     */
     public function about()
     {
         return view('front.about');

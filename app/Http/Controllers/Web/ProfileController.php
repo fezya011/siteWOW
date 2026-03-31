@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the specified user's profile
-     */
     public function show(User $user)
     {
         // Проверяем, может ли пользователь просматривать этот профиль
@@ -29,17 +26,11 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Show form for editing profile
-     */
     public function edit()
     {
         return view('user.profileEdit', ['user' => auth()->user()]);
     }
 
-    /**
-     * Update the user's profile
-     */
     public function update(UpdateProfileRequest $request)
     {
         $user = auth()->user();

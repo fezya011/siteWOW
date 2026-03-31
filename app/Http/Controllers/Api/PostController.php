@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     /**
-     * Display a listing of posts with filtering.
+     * Показать посты с фильтрацией.
      *
      * @param Request $request
      * @return PostCollection
@@ -47,7 +47,7 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created post.
+     * Создать новый пост.
      *
      * @param StorePostRequest $request
      * @param CreatePostService $service
@@ -65,7 +65,7 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified post.
+     * Показать конкретный пост.
      *
      * @param Post $post
      * @return JsonResponse
@@ -80,7 +80,7 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified post.
+     * Обновить пост.
      *
      * @param UpdatePostRequest $request
      * @param Post $post
@@ -104,7 +104,7 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified post.
+     * Удалить пост.
      *
      * @param Post $post
      * @return JsonResponse

@@ -14,9 +14,7 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of posts
-     */
+
     public function index(Request $request, FilterPostsService $filter)
     {
         $posts = $filter->execute($request);
@@ -24,9 +22,6 @@ class PostController extends Controller
         return view('front.home', compact('posts'));
     }
 
-    /**
-     * Show form for creating a new post
-     */
     public function create()
     {
         $this->authorize('create-post');
@@ -34,9 +29,6 @@ class PostController extends Controller
         return view('front.createPost');
     }
 
-    /**
-     * Store a newly created post
-     */
     public function store(StorePostRequest $request, CreatePostService $action)
     {
         $this->authorize('create-post');
@@ -46,17 +38,11 @@ class PostController extends Controller
         return redirect()->route('home')->with('success', 'Пост успешно создан!');
     }
 
-    /**
-     * Display the specified post
-     */
     public function show(Post $post)
     {
         return view('front.show', compact('post'));
     }
 
-    /**
-     * Show form for editing the specified post
-     */
     public function edit(Post $post)
     {
         $this->authorize('update-post', $post);
@@ -64,9 +50,6 @@ class PostController extends Controller
         return view('front.edit', compact('post'));
     }
 
-    /**
-     * Update the specified post
-     */
     public function update(UpdatePostRequest $request, Post $post)
     {
         $this->authorize('update-post', $post);
@@ -83,9 +66,6 @@ class PostController extends Controller
         return redirect()->route('show', $post)->with('success', 'Post updated successfully!');
     }
 
-    /**
-     * Remove the specified post
-     */
     public function destroy(Post $post)
     {
         $this->authorize('delete-post', $post);
